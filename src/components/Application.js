@@ -20,4 +20,9 @@ export default function Application(props) {
         />
         {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
       </section>
-      <section>className="schedule" <section>
+      <section className="schedule">
+        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+      </section>
+    </main>
+  );
+}
