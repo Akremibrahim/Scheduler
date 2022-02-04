@@ -1,50 +1,64 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "components/Application.scss";
 
 import DayList from "./DayList";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+import Appointment from "./Appointment"
+
+import { getAppointmentsForDay, getInterview, getInterviewsForDay } from "helpers/selectors";
+
+import useApplicationData from "../hooks/useApplicationData"
 
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
+  const interviewers = getInterviewsForDay(state, state.day);
+  const appointments = getAppointmentsForDay(state, state.day).map(
+    appointment => {
+      return (
+        <Appointment
+          key={appointment.id}
+          {...appointment}
+          interview={getInterview(state, appointment.interview)}
+          interviewers={interviewers}
+          bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
+        />
+      );
+    }
+  );
   return (
-    <main> className="layout"
+    <main className="layout">
       <section className="sidebar">
+
         <img
           className="sidebar--centered"
           src="images/logo.png"
-          alt="Interview Scheduler"
-        />
-        <DayList days={days} day={day} setDay={setDay}
-        />
+          alt="Interview Scheduler" />
         <hr className="sidebar__separator sidebar--centered" />
-        <nav className="sidebar__menu"></nav>
+        <nav className="sidebar__menu">
+          <DayList
+            key={state.days.id}
+            days={state.days}
+            day={state.day}
+            setDay={setDay}
+          />
+        </nav>
         <img
           className="sidebar__lhl sidebar--centered"
           src="images/lhl.png"
-          alt="Lighthouse Labs"
-        />
-        {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
+          alt="Lighthouse Labs" />
+
       </section>
       <section className="schedule">
-
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {appointments}
       </section>
+
     </main>
+  );
+}
