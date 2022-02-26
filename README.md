@@ -21,4 +21,6 @@ npm test
 ```sh
 npm run storybook
 ```
-Screenshot of Home page "https://github.com/Akremibrahim/Scheduler/blob/master/Screenshots/Screen%20Shot%202022-02-04%20at%2012.44.54%20AM.png"
+Screenshot of Home page https://github.com/Akremibrahim/Scheduler/blob/master/Screenshots/Screen%20Shot%202022-02-25%20at%207.45.32%20PM%20(2).
+
+Screenshot of booking my self into an appointment https://github.com/Akremibrahim/Scheduler/blob/master/Screenshots/Screen%20Shot%202022-02-25%20at%207.46.47%20PM%20(2).png
